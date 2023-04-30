@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NewModel , TodoItem} from './models';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular First Project';
-  user = 'Cem Eren Badur';
-  items =  [
-    { description: "Kahvaltı", action: "No" },
-    { description: "Spor", action: "No" },
-    { description: "Sinema", action: "No" },
-    { description: "Ödev", action: "No" }
-
-  ];
+  model = new NewModel;
+  user = this.model.user;
+  getItems(){
+    return this.model.items;
+  }
+  addItem(value: string){
+    if(value != ""){
+      this.model.items.push(new TodoItem(value,false));
+    }
+  }
 }
+
+
